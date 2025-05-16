@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automobile information and sales platform</title>
+    <!-- Vue2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navigation bar -->
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Main navigation route">
+          <div class="container">
+            <a class="navbar-brand" href="#" aria-label="The homepage of the Luxury Car World">
+              <img
+                src="static/images/logo.png"
+                alt="Automobile sales platform"
+                width="30"
+                height="30"
+                class="d-inline-block align-text-top"
+              />
+              The world of luxury Cars
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Expand the navigation menu"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#home" aria-current="page">Home Page</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#cars">Car display</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contact">Contact us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Hero Section -->
+      <section id="home" class="hero-section" role="banner" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <h1 id="hero-title">Explore the new realm of luxury driving</h1>
+          <p>We provide you with the most superior automotive sales and consulting services</p>
+          <button class="btn-explore" @click="scrollToSection('cars')" aria-label="Browse the car">
+            Browse the car
+          </button>
+        </div>
+      </section>
+
+      <!-- Car carousel image -->
+      <section id="cars" class="carousel-section" aria-labelledby="cars-title">
+        <div class="container">
+          <h2 id="cars-title" class="section-title">Popular car models</h2>
+          <div
+            id="carCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            @mouseenter="pauseCarousel"
+            @mouseleave="resumeCarousel"
+            aria-label="Car carousel image"
+          >
+            <div class="carousel-indicators" role="tablist">
+              <button
+                type="button"
+                data-bs-target="#carCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+                role="tab"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+                role="tab"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carCarousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+                role="tab"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carCarousel"
+                data-bs-slide-to="3"
+                aria-label="Slide 4"
+                role="tab"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carCarousel"
+                data-bs-slide-to="4"
+                aria-label="Slide 5"
+                role="tab"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" role="tabpanel" aria-label="Luxury car">
+                <img
+                  src="static/images/car1.jpg"
+                  class="d-block w-100"
+                  alt="Luxury car"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Luxury car</h5>
+                  <p>The noble and extraordinary driving experience showcases your refined taste</p>
+                </div>
+              </div>
+              <div class="carousel-item" role="tabpanel" aria-label="Luxury SUV">
+                <img
+                  src="static/images/car2.jpg"
+                  class="d-block w-100"
+                  alt="SUV"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Luxury SUV</h5>
+                  <p>The perfect combination of powerful performance and comfortable space</p>
+                </div>
+              </div>
+              <div class="carousel-item" role="tabpanel" aria-label="Performance sports car">
+                <img
+                  src="static/images/car3.jpg"
+                  class="d-block w-100"
+                  alt="Sports car"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Performance sports car</h5>
+                  <p>The embodiment of ultimate speed and passion</p>
+                </div>
+              </div>
+              <div class="carousel-item" role="tabpanel" aria-label="Luxury electric vehicle">
+                <img
+                  src="static/images/car4.jpg"
+                  class="d-block w-100"
+                  alt="Electric vehicle"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Luxury electric vehicle</h5>
+                  <p>The perfect blend of environmental protection and luxury</p>
+                </div>
+              </div>
+              <div class="carousel-item" role="tabpanel" aria-label="Business vehicle">
+                <img
+                  src="static/images/car5.jpg"
+                  class="d-block w-100"
+                  alt="Business vehicle"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Business vehicle</h5>
+                  <p>A mobile office tailored for successful people</p>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carCarousel"
+              data-bs-slide="prev"
+              aria-label="The previous one"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">The previous one</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carCarousel"
+              data-bs-slide="next"
+              aria-label="The next one"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">The next one</span>
+            </button>
+          </div>
+          
+          <!-- Display the car cards using the Grid layout -->
+          <div class="car-grid-container">
+            <div class="car-grid-item" v-for="car in carInfo" :key="car.id">
+              <img :src="car.image" :alt="car.name" class="car-grid-image">
+              <div class="car-grid-content">
+                <h3>{{ car.name }}</h3>
+                <p>{{ car.price }}</p>
+                <button class="btn btn-primary" @click="openTestDriveModal(car)" aria-label="Book a test drive">Book a test drive</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Automobile information accordion -->
+      <section class="accordion-section" aria-labelledby="car-details-title">
+        <div class="container">
+          <h2 id="car-details-title" class="section-title">Detailed information of the car</h2>
+          <div class="accordion" id="carAccordion">
+            <div
+              class="accordion-item"
+              v-for="(car, index) in carInfo"
+              :key="index"
+            >
+              <h2 class="accordion-header" :id="'heading' + index">
+                <button
+                  class="accordion-button"
+                  :class="{collapsed: index !== 0}"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  :data-bs-target="'#collapse' + index"
+                  :aria-expanded="index === 0 ? 'true' : 'false'"
+                  :aria-controls="'collapse' + index"
+                >
+                  {{ car.name }}
+                </button>
+              </h2>
+              <div
+                :id="'collapse' + index"
+                class="accordion-collapse collapse"
+                :class="{show: index === 0}"
+                :aria-labelledby="'heading' + index"
+                data-bs-parent="#carAccordion"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-grid">
+                    <div>
+                      <img
+                        :src="car.image"
+                        class="img-fluid rounded"
+                        :alt="car.name"
+                      />
+                    </div>
+                    <div>
+                      <h5>{{ car.name }}</h5>
+                      <p>{{ car.description }}</p>
+                      <ul class="car-specs">
+                        <li><strong>Price :</strong> {{ car.price }}</li>
+                        <li><strong>Engine:</strong> {{ car.engine }}</li>
+                        <li>
+                          <strong>Acceleration time(0-100km/h):</strong> {{
+                          car.acceleration }}
+                        </li>
+                        <li><strong>Maximum speed:</strong> {{ car.topSpeed }}</li>
+                      </ul>
+                      <button class="btn btn-primary" @click="openTestDriveModal(car)" aria-label="Book a test drive">Book a test drive</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The part about Us -->
+      <section id="about" class="about-section" aria-labelledby="about-title">
+        <div class="container">
+          <div class="info-grid">
+            <div>
+              <h2 id="about-title" class="section-title">About Us</h2>
+              <article>
+                <p>
+                  Luxury Car World was established in 2005 and is a leading high-end car sales platform in China. We have in-depth cooperative relationships with the world's top automotive brands and are committed to providing Chinese consumers with the highest quality luxury models and services.
+                </p>
+                <p>
+                  Our mission is to enable every car owner to enjoy the ultimate pleasure of driving through outstanding products and unparalleled customer experience. Whether you are looking for a business vehicle, a family car or a performance sports car, we can meet your needs.
+                </p>
+                <p>
+                  Our professional sales consultant team has rich industry experience and can provide you with professional car purchase advice. Meanwhile, our after-sales service team will also provide comprehensive protection for your beloved car.
+                </p>
+              </article>
+            </div>
+            <div>
+              <div class="about-video">
+                <video controls class="img-fluid" aria-label="Exhibition hall introduction video">
+                  <source src="static/videos/v1.mp4" type="video/mp4" />
+                  Your browser does not support the video TAB.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Us Section -->
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <div class="container">
+          <h2 id="contact-title" class="section-title">Contact us</h2>
+          <div class="info-grid">
+            <div>
+              <form id="contactForm" @submit.prevent="submitForm" aria-labelledby="contact-form-title">
+                <h3 id="contact-form-title" class="visually-hidden">Contact form</h3>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    v-model="form.name"
+                    required
+                    placeholder="Please enter your name"
+                    :class="{'is-invalid': errors.name}"
+                    aria-describedby="nameError"
+                  />
+                  <div class="invalid-feedback" id="nameError" v-if="errors.name" aria-live="assertive">
+                    {{ errors.name }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Telephone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    v-model="form.phone"
+                    required
+                    placeholder="Please enter your telephone number"
+                    :class="{'is-invalid': errors.phone}"
+                    aria-describedby="phoneError"
+                  />
+                  <div class="invalid-feedback" id="phoneError" v-if="errors.phone" aria-live="assertive">
+                    {{ errors.phone }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    v-model="form.email"
+                    required
+                    placeholder="Please enter your email address"
+                    :class="{'is-invalid': errors.email}"
+                    aria-describedby="emailError"
+                  />
+                  <div class="invalid-feedback" id="emailError" v-if="errors.email" aria-live="assertive">
+                    {{ errors.email }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="carType" class="form-label">The models of interest</label>
+                  <select
+                    class="form-select"
+                    id="carType"
+                    v-model="form.carType"
+                    required
+                    :class="{'is-invalid': errors.carType}"
+                    aria-describedby="carTypeError"
+                  >
+                    <option value="" disabled selected>Please select the vehicle model.</option>
+                    <option
+                      v-for="car in carInfo"
+                      :key="car.id"
+                      :value="car.name"
+                    >
+                      {{ car.name }}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" id="carTypeError" v-if="errors.carType" aria-live="assertive">
+                    {{ errors.carType }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Leave a message</label>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    rows="3"
+                    v-model="form.message"
+                    placeholder="Please enter your message"
+                    :class="{'is-invalid': errors.message}"
+                    aria-describedby="messageError"
+                  ></textarea>
+                  <div class="invalid-feedback" id="messageError" v-if="errors.message" aria-live="assertive">
+                    {{ errors.message }}
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              
+              <!-- The submitted form information is displayed -->
+              <div v-if="formSubmitted" class="submitted-form-data" aria-live="polite" aria-atomic="true">
+                <h4>Your submission information</h4>
+                <div class="submitted-form-data-item">
+                  <span class="submitted-form-data-label">Name:</span>
+                  <span>{{ submittedFormData.name }}</span>
+                </div>
+                <div class="submitted-form-data-item">
+                  <span class="submitted-form-data-label">Telephone:</span>
+                  <span>{{ submittedFormData.phone }}</span>
+                </div>
+                <div class="submitted-form-data-item">
+                  <span class="submitted-form-data-label">Email address:</span>
+                  <span>{{ submittedFormData.email }}</span>
+                </div>
+                <div class="submitted-form-data-item">
+                  <span class="submitted-form-data-label">Vehicle model:</span>
+                  <span>{{ submittedFormData.carType }}</span>
+                </div>
+                <div class="submitted-form-data-item">
+                  <span class="submitted-form-data-label">Leave a message:</span>
+                  <span>{{ submittedFormData.message }}</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="contact-info">
+                <h4>Contact information</h4>
+                <p>
+                  <i class="bi bi-geo-alt-fill"></i>
+                  Address: No. 88, Jianguo Road, Chaoyang District, Beijing
+                </p>
+                <p><i class="bi bi-telephone-fill"></i> Telephone：400-888-8888</p>
+                <p>
+                  <i class="bi bi-envelope-fill"></i> Email address：info@luxurycars.com
+                </p>
+                <h4>Business hours</h4>
+                <p>Monday to Friday：9:00 - 18:00</p>
+                <p>Saturday to Sunday：10:00 - 17:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer-->
+      <footer role="contentinfo">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <h5>The world of luxury Cars</h5>
+              <p>We provide you with the most superior automotive sales and consulting services</p>
+            </div>
+            <div>
+              <h5>Quick link</h5>
+              <ul class="footer-links">
+                <li><a href="#home">Home Page</a></li>
+                <li><a href="#cars">Car display</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact us</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5>Follow us</h5>
+              <div class="social-links">
+                <a href="#" aria-label="抖音"><i class="bi bi-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="copyright">
+            <p>&copy; 2025 Luxury Car World. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+      
+      <!-- A pop-up window for booking a test drive -->
+      <div class="modal fade" id="testDriveModal" tabindex="-1" aria-labelledby="testDriveModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="testDriveModalLabel">Book a test drive - {{ selectedCar.name }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="testDriveForm" @submit.prevent="submitTestDriveForm">
+                <div class="mb-3">
+                  <label for="tdName" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="tdName"
+                    v-model="testDriveForm.name"
+                    required
+                    placeholder="Please enter your name"
+                    :class="{'is-invalid': testDriveErrors.name}"
+                    aria-describedby="tdNameError"
+                  />
+                  <div class="invalid-feedback" id="tdNameError" v-if="testDriveErrors.name" aria-live="assertive">
+                    {{ testDriveErrors.name }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="tdPhone" class="form-label">Telephone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="tdPhone"
+                    v-model="testDriveForm.phone"
+                    required
+                    placeholder="Please enter your telephone number"
+                    :class="{'is-invalid': testDriveErrors.phone}"
+                    aria-describedby="tdPhoneError"
+                  />
+                  <div class="invalid-feedback" id="tdPhoneError" v-if="testDriveErrors.phone" aria-live="assertive">
+                    {{ testDriveErrors.phone }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="tdDate" class="form-label">Appointment date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="tdDate"
+                    v-model="testDriveForm.date"
+                    required
+                    :min="minDate"
+                    :class="{'is-invalid': testDriveErrors.date}"
+                    aria-describedby="tdDateError"
+                  />
+                  <div class="invalid-feedback" id="tdDateError" v-if="testDriveErrors.date" aria-live="assertive">
+                    {{ testDriveErrors.date }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="tdTime" class="form-label">Appointment time</label>
+                  <select
+                    class="form-select"
+                    id="tdTime"
+                    v-model="testDriveForm.time"
+                    required
+                    :class="{'is-invalid': testDriveErrors.time}"
+                    aria-describedby="tdTimeError"
+                  >
+                    <option value="" disabled selected>Please select the time.</option>
+                    <option value="Morning 9:00 - 11:00">Morning 9:00 - 11:00</option>
+                    <option value="In the afternoon 13:00 - 15:00">In the afternoon 13:00 - 15:00</option>
+                    <option value="In the afternoon 15:00 - 17:00">In the afternoon 15:00 - 17:00</option>
+                  </select>
+                  <div class="invalid-feedback" id="tdTimeError" v-if="testDriveErrors.time" aria-live="assertive">
+                    {{ testDriveErrors.time }}
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="tdRemark" class="form-label">Remarks</label>
+                  <textarea
+                    class="form-control"
+                    id="tdRemark"
+                    rows="3"
+                    v-model="testDriveForm.remark"
+                    placeholder="Please enter the remarks information (optional)"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" @click="submitTestDriveForm">Submit an appointment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- A pop-up window appears upon successful reservation -->
+      <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="successModalLabel">The reservation was successful</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center mb-4">
+                <i class="bi bi-check-circle-fill text-success success-icon"></i>
+                <h4>Your test drive reservation has been successfully submitted！</h4>
+                <p>Thank you for booking the test drive experience at {{selectedCar.name}}.</p>
+                <p>Our sales consultant will contact you within 24 hours to confirm your reservation information.</p>
+              </div>
+              <div class="reservation-details">
+                <h5>Reservation information</h5>
+                <p><strong>Vehicle model：</strong>{{ selectedCar.name }}</p>
+                <p><strong>Appointment date：</strong>{{ testDriveForm.date }}</p>
+                <p><strong>Appointment time：</strong>{{ testDriveForm.time }}</p>
+                <p><strong>Reservation person：</strong>{{ testDriveForm.name }}</p>
+                <p><strong>Contact number：</strong>{{ testDriveForm.phone }}</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">"Sure"</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Error prompt component -->
+      <div class="error-notification" :class="{ show: showError }" aria-live="assertive" role="alert" aria-atomic="true">
+        <div class="error-notification-header">
+          <h5>An error occurred.</h5>
+          <button type="button" class="error-notification-close" @click="closeError" aria-label="Turn off the error prompt">&times;</button>
+        </div>
+        <div class="error-details">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+    <!--Custom JS -->
+    <script src="static/js/main.js"></script>
+  </body>
+</html>
